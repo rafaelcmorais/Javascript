@@ -1,0 +1,39 @@
+function ehPrimo(num) {
+    // Verifica se o número é primo
+    if (num < 2) {
+        return false; // Números menores que 2 não são primos
+    }
+    for (let i = 2; i < num; i++) {
+        if (num % i === 0) {
+            return false; // Se o número é divisível por i, não é primo
+        }
+    }
+    return true; // Se não for divisível por nenhum i, é primo
+}
+
+function encontrarNMaioresPrimos(n) {
+    const primos = []; // Lista para armazenar os números primos encontrados
+    let num = n; // Começa a busca a partir do número fornecido
+
+    // Enquanto não tivermos 10 números primos
+    while (primos.length < 10) {
+        if (ehPrimo(num)) {
+            primos.push(num); // Adiciona o número à lista se for primo
+        }
+        num++;
+    }
+
+    // Exibe os 10 maiores números primos encontrados
+    let primosfrmt = primos.join(", ")
+    alert(`Os 10 próximos números primos a partir de ${n} são: \n${primosfrmt}`);
+}
+
+// Solicita ao usuário um número inicial
+let numero = parseInt(prompt("Digite um número para encontrar os 10 próximos primos: "));
+
+// Valida se a entrada do usuário é um número
+if (!isNaN(numero)) {
+    encontrarNMaioresPrimos(numero); // Chama a função para encontrar os primos
+} else {
+    alert("Por favor, insira um número válido."); // Mensagem de erro para entradas inválidas
+}
